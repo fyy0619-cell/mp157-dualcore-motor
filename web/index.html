@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MP157 双核电机控制台</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+<header>
+  <h1>STM32MP157 异构双核 · 电机实时控制台</h1>
+  <span id="status" class="badge off">未连接</span>
+</header>
+
+<main>
+  <section class="chart-card">
+    <canvas id="chart"></canvas>
+  </section>
+
+  <section class="panel">
+    <div class="row">
+      <button id="btnRun" class="run">启动</button>
+      <div class="readout">
+        实测 <b id="rpm">0</b> rpm ·
+        占空比 <b id="duty">0</b> ·
+        <span id="stall" class="stall hidden">堵转保护</span>
+      </div>
+    </div>
+
+    <label>目标转速 <output id="spdVal">0</output> rpm
+      <input type="range" id="spd" min="0" max="3000" value="0" step="10">
+    </label>
+
+    <fieldset>
+      <legend>PID 在线整定</legend>
+      <label>Kp <output id="kpVal">0.0008</output>
+        <input type="range" id="kp" min="0" max="0.005" value="0.0008" step="0.0001"></label>
+      <label>Ki <output id="kiVal">0.0040</output>
+        <input type="range" id="ki" min="0" max="0.02" value="0.0040" step="0.0001"></label>
+      <label>Kd <output id="kdVal">0.00002</output>
+        <input type="range" id="kd" min="0" max="0.0002" value="0.00002" step="0.00001"></label>
+      <button id="btnPid">应用 PID</button>
+    </fieldset>
+  </section>
+</main>
+
+<footer>基于 OpenAMP/RPMsg 的 A7↔M4 通信 · 数据源:M4 硬实时控制环(1 kHz)</footer>
+<script src="app.js"></script>
+</body>
+</html>
