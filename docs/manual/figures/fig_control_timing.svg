@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="380" viewBox="0 0 820 380" font-family="Microsoft YaHei, Segoe UI, sans-serif">
+  <defs><marker id="t" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 z" fill="#0b3d91"/></marker></defs>
+  <rect x="1" y="1" width="818" height="378" fill="#fff" stroke="#d0d7de"/>
+  <text x="410" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#0b3d91">1 kHz 控制中断时序与遥测抽取</text>
+
+  <!-- timeline -->
+  <line x1="60" y1="120" x2="760" y2="120" stroke="#333" stroke-width="2"/>
+  <text x="60" y="150" font-size="11" fill="#555">t</text>
+  <g fill="#0b3d91">
+    <!-- ticks every 1ms -->
+    <g font-size="0">
+    </g>
+  </g>
+  <g stroke="#0b3d91" stroke-width="2">
+    <line x1="100" y1="110" x2="100" y2="130"/><line x1="160" y1="110" x2="160" y2="130"/>
+    <line x1="220" y1="110" x2="220" y2="130"/><line x1="280" y1="110" x2="280" y2="130"/>
+    <line x1="340" y1="110" x2="340" y2="130"/><line x1="400" y1="110" x2="400" y2="130"/>
+    <line x1="460" y1="110" x2="460" y2="130"/><line x1="520" y1="110" x2="520" y2="130"/>
+  </g>
+  <text x="130" y="104" text-anchor="middle" font-size="11" fill="#0b3d91">1 ms</text>
+  <text x="300" y="152" text-anchor="middle" font-size="12" fill="#0b3d91">每次 tick(1 kHz):encoder_update → pid_update → motor_pwm_set</text>
+
+  <!-- telemetry decim -->
+  <line x1="100" y1="120" x2="100" y2="200" stroke="#1e8449" stroke-width="2" marker-end="url(#t)"/>
+  <rect x="60" y="200" width="80" height="34" rx="5" fill="#eaf7ea" stroke="#1e8449"/><text x="100" y="222" text-anchor="middle" font-size="11">遥测帧</text>
+  <text x="360" y="220" font-size="12" fill="#1e8449">每 20 次 tick 发 1 帧遥测 → 50 Hz(不干扰实时控制)</text>
+  <line x1="700" y1="120" x2="700" y2="200" stroke="#1e8449" stroke-width="2" marker-end="url(#t)"/>
+  <rect x="660" y="200" width="80" height="34" rx="5" fill="#eaf7ea" stroke="#1e8449"/><text x="700" y="222" text-anchor="middle" font-size="11">遥测帧</text>
+
+  <rect x="90" y="270" width="640" height="90" rx="8" fill="#f2f6ff" stroke="#9bb0d0"/>
+  <text x="410" y="294" text-anchor="middle" font-size="13" font-weight="bold" fill="#0b3d91">确定性保证</text>
+  <text x="410" y="316" text-anchor="middle" font-size="12" fill="#333">控制在 M4 定时器中断里定周期执行,不受 Linux 调度影响 → 微秒级抖动</text>
+  <text x="410" y="338" text-anchor="middle" font-size="12" fill="#333">堵转检测:高占空比且近零转速持续 300 ms → 锁定停机(flags 置位上报)</text>
+</svg>

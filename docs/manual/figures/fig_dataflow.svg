@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="420" viewBox="0 0 820 420" font-family="Microsoft YaHei, Segoe UI, sans-serif">
+  <defs><marker id="d" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#0b3d91"/></marker></defs>
+  <rect x="1" y="1" width="818" height="418" fill="#fff" stroke="#d0d7de"/>
+  <text x="410" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#0b3d91">三条数据流</text>
+
+  <text x="150" y="66" text-anchor="middle" font-size="14" font-weight="bold" fill="#b9770e">① 控制环(M4,1 kHz,实时)</text>
+  <g font-size="12">
+    <rect x="60" y="80" width="180" height="34" rx="5" fill="#fff6ea" stroke="#b9770e"/><text x="150" y="102" text-anchor="middle">编码器计数</text>
+    <rect x="60" y="128" width="180" height="34" rx="5" fill="#fff6ea" stroke="#b9770e"/><text x="150" y="150" text-anchor="middle">测速 → PID</text>
+    <rect x="60" y="176" width="180" height="34" rx="5" fill="#fff6ea" stroke="#b9770e"/><text x="150" y="198" text-anchor="middle">PWM → 电机</text>
+  </g>
+  <line x1="150" y1="114" x2="150" y2="128" stroke="#0b3d91" stroke-width="2" marker-end="url(#d)"/>
+  <line x1="150" y1="162" x2="150" y2="176" stroke="#0b3d91" stroke-width="2" marker-end="url(#d)"/>
+  <path d="M60,193 C30,193 30,97 58,97" fill="none" stroke="#1e8449" stroke-width="2" marker-end="url(#d)"/>
+  <text x="150" y="230" text-anchor="middle" font-size="11" fill="#555">闭环全程不出 M4</text>
+
+  <text x="470" y="66" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e8449">② 遥测上行(~50 Hz)</text>
+  <g font-size="11">
+    <rect x="300" y="80" width="150" height="30" rx="5" fill="#fff6ea" stroke="#b9770e"/><text x="375" y="100" text-anchor="middle">M4:T rpm...</text>
+    <rect x="300" y="122" width="150" height="30" rx="5" fill="#f7f0ff" stroke="#7d3c98"/><text x="375" y="142" text-anchor="middle">RPMsg/ttyRPMSG0</text>
+    <rect x="300" y="164" width="150" height="30" rx="5" fill="#eef4ff" stroke="#0b3d91"/><text x="375" y="184" text-anchor="middle">bridge.py</text>
+    <rect x="300" y="206" width="150" height="30" rx="5" fill="#eaf7ea" stroke="#1e8449"/><text x="375" y="226" text-anchor="middle">WebSocket→浏览器</text>
+  </g>
+  <line x1="375" y1="110" x2="375" y2="122" stroke="#0b3d91" stroke-width="2" marker-end="url(#d)"/>
+  <line x1="375" y1="152" x2="375" y2="164" stroke="#0b3d91" stroke-width="2" marker-end="url(#d)"/>
+  <line x1="375" y1="194" x2="375" y2="206" stroke="#0b3d91" stroke-width="2" marker-end="url(#d)"/>
+
+  <text x="640" y="66" text-anchor="middle" font-size="14" font-weight="bold" fill="#c0392b">③ 命令下行</text>
+  <g font-size="11">
+    <rect x="560" y="80" width="170" height="30" rx="5" fill="#eaf7ea" stroke="#1e8449"/><text x="645" y="100" text-anchor="middle">滑块/按钮</text>
+    <rect x="560" y="122" width="170" height="30" rx="5" fill="#eef4ff" stroke="#0b3d91"/><text x="645" y="142" text-anchor="middle">WebSocket→bridge</text>
+    <rect x="560" y="164" width="170" height="30" rx="5" fill="#f7f0ff" stroke="#7d3c98"/><text x="645" y="184" text-anchor="middle">写 ttyRPMSG0</text>
+    <rect x="560" y="206" width="170" height="30" rx="5" fill="#fff6ea" stroke="#b9770e"/><text x="645" y="226" text-anchor="middle">M4 更新目标/PID</text>
+  </g>
+  <line x1="645" y1="110" x2="645" y2="122" stroke="#0b3d91" stroke-width="2" marker-end="url(#d)"/>
+  <line x1="645" y1="152" x2="645" y2="164" stroke="#0b3d91" stroke-width="2" marker-end="url(#d)"/>
+  <line x1="645" y1="194" x2="645" y2="206" stroke="#0b3d91" stroke-width="2" marker-end="url(#d)"/>
+
+  <rect x="90" y="300" width="640" height="90" rx="8" fill="#f2f6ff" stroke="#9bb0d0"/>
+  <text x="410" y="326" text-anchor="middle" font-size="13" font-weight="bold" fill="#0b3d91">协议(RPMsg 文本帧)</text>
+  <text x="410" y="350" text-anchor="middle" font-size="12" fill="#333">下行:RUN 1|0 · SPD &lt;rpm&gt; · PID &lt;kp&gt; &lt;ki&gt; &lt;kd&gt;</text>
+  <text x="410" y="372" text-anchor="middle" font-size="12" fill="#333">上行:T &lt;ms&gt; &lt;rpm&gt; &lt;target&gt; &lt;duty&gt; &lt;flags&gt;(flags bit0 堵转,bit1 运行中)</text>
+</svg>

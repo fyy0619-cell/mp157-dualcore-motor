@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="470" viewBox="0 0 820 470" font-family="Microsoft YaHei, Segoe UI, sans-serif">
+  <rect x="1" y="1" width="818" height="468" fill="#fff" stroke="#d0d7de"/>
+  <text x="410" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#0b3d91">硬件连接:STM32MP157 ↔ TB6612 ↔ 直流电机(带编码器)</text>
+
+  <rect x="40" y="80" width="210" height="300" rx="10" fill="#eef4ff" stroke="#0b3d91" stroke-width="2"/>
+  <text x="145" y="106" text-anchor="middle" font-size="15" font-weight="bold" fill="#0b3d91">STM32MP157</text>
+  <text x="145" y="126" text-anchor="middle" font-size="11" fill="#555">M4 定时器/GPIO</text>
+  <g font-size="12" fill="#fff">
+    <rect x="200" y="150" width="50" height="24" fill="#5b8def"/><text x="225" y="167" text-anchor="middle">PWM</text>
+    <rect x="200" y="184" width="50" height="24" fill="#8e44ad"/><text x="225" y="201" text-anchor="middle">AIN1</text>
+    <rect x="200" y="218" width="50" height="24" fill="#8e44ad"/><text x="225" y="235" text-anchor="middle">AIN2</text>
+    <rect x="200" y="262" width="50" height="24" fill="#1e8449"/><text x="225" y="279" text-anchor="middle">ENC-A</text>
+    <rect x="200" y="296" width="50" height="24" fill="#1e8449"/><text x="225" y="313" text-anchor="middle">ENC-B</text>
+    <rect x="200" y="340" width="50" height="24" fill="#2c3e50"/><text x="225" y="357" text-anchor="middle">GND</text>
+  </g>
+
+  <rect x="330" y="120" width="180" height="220" rx="10" fill="#fff6ea" stroke="#b9770e" stroke-width="2"/>
+  <text x="420" y="146" text-anchor="middle" font-size="15" font-weight="bold" fill="#b9770e">TB6612</text>
+  <g font-size="12" fill="#fff">
+    <rect x="330" y="150" width="46" height="24" fill="#5b8def"/><text x="353" y="167" text-anchor="middle">PWMA</text>
+    <rect x="330" y="184" width="46" height="24" fill="#8e44ad"/><text x="353" y="201" text-anchor="middle">AIN1</text>
+    <rect x="330" y="218" width="46" height="24" fill="#8e44ad"/><text x="353" y="235" text-anchor="middle">AIN2</text>
+    <rect x="464" y="160" width="46" height="24" fill="#c0392b"/><text x="487" y="177" text-anchor="middle">AO1</text>
+    <rect x="464" y="200" width="46" height="24" fill="#c0392b"/><text x="487" y="217" text-anchor="middle">AO2</text>
+    <rect x="330" y="300" width="46" height="24" fill="#2c3e50"/><text x="353" y="317" text-anchor="middle">GND</text>
+    <rect x="410" y="300" width="60" height="24" fill="#c0392b"/><text x="440" y="317" text-anchor="middle">VM 6-12V</text>
+  </g>
+  <text x="420" y="256" text-anchor="middle" font-size="11" fill="#b9770e">STBY→3V3</text>
+
+  <circle cx="640" cy="200" r="60" fill="#eaf7ea" stroke="#1e8449" stroke-width="2"/>
+  <text x="640" y="196" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e8449">直流电机</text>
+  <text x="640" y="214" text-anchor="middle" font-size="11" fill="#333">+编码器</text>
+
+  <!-- wires -->
+  <line x1="250" y1="162" x2="330" y2="162" stroke="#5b8def" stroke-width="3"/>
+  <line x1="250" y1="196" x2="330" y2="196" stroke="#8e44ad" stroke-width="3"/>
+  <line x1="250" y1="230" x2="330" y2="230" stroke="#8e44ad" stroke-width="3"/>
+  <line x1="510" y1="172" x2="585" y2="185" stroke="#c0392b" stroke-width="3"/>
+  <line x1="510" y1="212" x2="585" y2="212" stroke="#c0392b" stroke-width="3"/>
+  <line x1="700" y1="240" x2="250" y2="274" stroke="#1e8449" stroke-width="2"/>
+  <line x1="700" y1="255" x2="250" y2="308" stroke="#1e8449" stroke-width="2"/>
+  <text x="470" y="150" font-size="11" fill="#555">电枢</text>
+  <text x="470" y="290" font-size="11" fill="#1e8449">编码器 A/B 回 M4</text>
+
+  <rect x="120" y="405" width="580" height="50" rx="6" fill="#f2f6ff" stroke="#9bb0d0"/>
+  <text x="410" y="425" text-anchor="middle" font-size="12" fill="#333">电机独立供电(VM 6-12V)与板务必**共地**;I2C 为漏极开路,若接 MPU-6050 需上拉</text>
+  <text x="410" y="444" text-anchor="middle" font-size="11" fill="#555">编码器经定时器编码器模式硬件 x4 解码;引脚随 CubeMX 分配</text>
+</svg>
