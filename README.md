@@ -63,9 +63,10 @@ python3 bridge.py --tty /dev/ttyRPMSG0 --port 8080
 
 ## 路线图
 
-- [ ] **M0** remoteproc + RPMsg echo 打通(风险验证)
-- [ ] **M1** 开环转 + Web 调占空比
-- [ ] **M2** 编码器测速 + PID 闭环 + 在线整定
+- [x] **M0** remoteproc + RPMsg 打通(真板子验证,双向往返实证)✅
+- [x] **M-sim** 无电机全栈闭环:M4 1kHz PID + 模拟电机 ↔ RPMsg ↔ A7 bridge ↔ 浏览器实时曲线/在线整定(真机)✅ 见 [`docs/STEP-AB-sim-bringup.md`](docs/STEP-AB-sim-bringup.md)
+- [ ] **M1** 真电机开环转 + Web 调占空比(等硬件:带编码器直流减速电机 + TB6612)
+- [ ] **M2** 编码器测速 + PID 闭环(把模拟电机换成真 encoder+PWM,上层不动)
 - [ ] **M3** 健壮性(堵转/失联/重连)+ 演示视频
 - [ ] **M4(可选)** MPU-6050 振动/倾角集成
 - [ ] **未来** BLDC + FOC 矢量控制(名头升级)
