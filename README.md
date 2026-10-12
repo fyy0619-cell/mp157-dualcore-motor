@@ -65,9 +65,8 @@ python3 bridge.py --tty /dev/ttyRPMSG0 --port 8080
 
 - [x] **M0** remoteproc + RPMsg 打通(真板子验证,双向往返实证)✅
 - [x] **M-sim** 无电机全栈闭环:M4 1kHz PID + 模拟电机 ↔ RPMsg ↔ A7 bridge ↔ 浏览器实时曲线/在线整定(真机)✅ 见 [`docs/STEP-AB-sim-bringup.md`](docs/STEP-AB-sim-bringup.md)
-- [ ] **M1** 真电机开环转 + Web 调占空比(等硬件:带编码器直流减速电机 + TB6612)
-- [ ] **M2** 编码器测速 + PID 闭环(把模拟电机换成真 encoder+PWM,上层不动)
-- [ ] **M3** 健壮性(堵转/失联/重连)+ 演示视频
+- [x] **M1/M2 真电机闭环(真机运行)** 🔧:TB6612 + JGA25-370 接入(PE14 PWM / PE13·12·0 方向 / PI5·6 编码器),编码器手转验证通过,**PID 闭环运行、电机随目标变速**;但**实测 rpm 未收敛到目标、小幅波动**——待收尾的是 `ENC_CPR` 标定 + PID 对真机刻度重调 + 轮询改中断计数(硬件损坏中断,未完成)。详见 [`docs/M1-real-motor-bringup.md`](docs/M1-real-motor-bringup.md)
+- [ ] **M3** 标定/调参收尾(ENC_CPR/增益)+ 健壮性(堵转/失联)+ 演示视频(待换硬件)
 - [ ] **M4(可选)** MPU-6050 振动/倾角集成
 - [ ] **未来** BLDC + FOC 矢量控制(名头升级)
 
